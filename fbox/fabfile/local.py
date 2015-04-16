@@ -134,7 +134,7 @@ def create_dotenv(debug=False):
     env.box_secret_key = get_random_string(50)
 
     env_content = '''\
-DJANGO_SETTINGS_MODULE=%(box_project_name)s.settings
+DJANGO_SETTINGS_MODULE=conf.settings
 DATABASE_URL=postgres://localhost:5432/%(box_database_local)s
 CACHE_URL=hiredis://localhost:6379/1/%(box_database_local)s
 SECRET_KEY=%(box_secret_key)s
