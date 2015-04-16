@@ -139,6 +139,7 @@ CACHE_URL=hiredis://localhost:6379/1/%(box_database_local)s
 SECRET_KEY=%(box_secret_key)s
 SENTRY_DSN=
 ALLOWED_HOSTS=['*']
+STAFF_IP = ['212.243.229.35']  # Feinheit IP
 ''' % env)
 
 
