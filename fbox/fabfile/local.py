@@ -25,7 +25,7 @@ def setup():
 
     execute('local.create_virtualenv')
     execute('local.frontend_tools')
-    execute('local.create_dotenv')
+    execute('local.create_dotenv', debug=True)
     execute('local.create_and_migrate_database')
 
     puts(green(
@@ -57,7 +57,7 @@ def setup_with_production_data():
 
     execute('local.create_virtualenv')
     execute('local.frontend_tools')
-    execute('local.create_dotenv')
+    execute('local.create_dotenv', debug=True)
     execute('local.pull_database')
     execute('local.empty_to_password')
     execute('local.pull_mediafiles')
@@ -128,18 +128,26 @@ def frontend_tools():
 
 @task
 @hosts('')
-def create_dotenv():
+def create_dotenv(debug=False):
     """Creates a .env file containing basic configuration for
     local development"""
-    with open('.env', 'w') as f:
-        env.box_secret_key = get_random_string(50)
-        f.write('''\
+    env.box_secret_key = get_random_string(50)
+
+    env_content = '''\
+DJANGO_SETTINGS_MODULE=%(box_project_name)s.settings
 DATABASE_URL=postgres://localhost:5432/%(box_database_local)s
 CACHE_URL=hiredis://localhost:6379/1/%(box_database_local)s
 SECRET_KEY=%(box_secret_key)s
 SENTRY_DSN=
 ALLOWED_HOSTS=['*']
-''' % env)
+''' % env
+    if debug:
+        env_content += "DEBUG=True\n"
+
+    with open('.env', 'w') as f:
+        f.write(env_content)
+
+    puts('The following information has been added to the .env file:\n' + env_content)
 
 
 @task
