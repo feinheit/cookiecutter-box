@@ -13,50 +13,10 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('form_designer', '__first__'),
-        ('elephantblog', '__first__'),
         ('medialibrary', '__first__'),
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='ApplicationContent',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
-                ('parameters', feincms.contrib.fields.JSONField(editable=False, null=True)),
-                ('region', models.CharField(max_length=255)),
-                ('ordering', models.IntegerField(verbose_name='ordering', default=0)),
-                ('urlconf_path', models.CharField(max_length=100, verbose_name='application', choices=[('elephantblog', 'Blog')])),
-            ],
-            options={
-                'db_table': 'page_page_applicationcontent',
-                'ordering': ['ordering'],
-                'permissions': [],
-                'verbose_name': 'application content',
-                'abstract': False,
-                'verbose_name_plural': 'application contents',
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
-            name='BlogEntryListContent',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
-                ('paginate_by', models.PositiveIntegerField(verbose_name='entries per page', help_text='Set to 0 to disable pagination.', default=0)),
-                ('featured_only', models.BooleanField(verbose_name='featured only', help_text='Only show articles marked as featured', default=False)),
-                ('region', models.CharField(max_length=255)),
-                ('ordering', models.IntegerField(verbose_name='ordering', default=0)),
-                ('category', models.ForeignKey(to='elephantblog.Category', help_text='Only show entries from this category.', null=True, blank=True, verbose_name='category')),
-            ],
-            options={
-                'db_table': 'page_page_blogentrylistcontent',
-                'ordering': ['ordering'],
-                'permissions': [],
-                'verbose_name': 'Blog entry list',
-                'abstract': False,
-                'verbose_name_plural': 'Blog entry lists',
-            },
-            bases=(models.Model,),
-        ),
         migrations.CreateModel(
             name='FormContent',
             fields=[
@@ -139,18 +99,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='formcontent',
-            name='parent',
-            field=models.ForeignKey(to='page.Page'),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='blogentrylistcontent',
-            name='parent',
-            field=models.ForeignKey(to='page.Page'),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='applicationcontent',
             name='parent',
             field=models.ForeignKey(to='page.Page'),
             preserve_default=True,
