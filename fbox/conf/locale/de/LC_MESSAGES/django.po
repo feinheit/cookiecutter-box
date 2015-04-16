@@ -284,10 +284,6 @@ msgstr "gross"
 msgid "Projects"
 msgstr "Projekte"
 
-#: box/cms/models.py:131
-msgid "Blog"
-msgstr "Blog"
-
 #: box/cms/models.py:144
 msgid "cropped"
 msgstr "zugeschnitten"
@@ -423,17 +419,6 @@ msgstr "%(name)s hinzufügen"
 #: box/templates/newsletter_subscription/subscribe.html:16
 msgid "Submit"
 msgstr "Absenden"
-
-#: box/templates/elephantblog/entry_archive.html:11
-#: box/templates/elephantblog/entry_archive.html:12
-#: box/templates/elephantblog/entry_archive.html:13
-#: box/templates/elephantblog/entry_archive.html:14
-msgid "for"
-msgstr "für"
-
-#: box/templates/elephantblog/entry_detail.html:15
-msgid "by"
-msgstr "von"
 
 #: box/templates/newsletter_subscription/subscribe.html:10
 msgid ""

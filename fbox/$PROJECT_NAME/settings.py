@@ -121,7 +121,6 @@ INSTALLED_APPS = (
     'feincms.module.page',
     'mptt',
     'form_designer',
-    'elephantblog',
     'feincms_oembed',
 
     'compressor',
@@ -134,7 +133,6 @@ INSTALLED_APPS = (
 MIGRATION_MODULES = dict((app, '${PROJECT_NAME}.migrate.%s' % app) for app in (
     'page',
     'medialibrary',
-    'elephantblog',
 ))
 
 FEINCMS_RICHTEXT_INIT_TEMPLATE = 'admin/content/richtext/init_ckeditor.html'
@@ -160,33 +158,6 @@ AUTHENTICATION_BACKENDS = (
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_HTTPONLY = True
-
-
-def elephantblog_entry_url_app(self):
-    from feincms.content.application.models import app_reverse
-    return app_reverse('elephantblog_entry_detail', 'elephantblog', kwargs={
-        'year': self.published_on.strftime('%Y'),
-        'month': self.published_on.strftime('%m'),
-        'day': self.published_on.strftime('%d'),
-        'slug': self.slug,
-    })
-
-
-def elephantblog_category_url_app(self):
-    from feincms.content.application.models import app_reverse
-    return app_reverse('elephantblog_category_detail', 'elephantblog', kwargs={
-        'slug': self.translation.slug,
-    })
-
-
-ABSOLUTE_URL_OVERRIDES = {
-    'elephantblog.entry': elephantblog_entry_url_app,
-    'elephantblog.category': elephantblog_category_url_app,
-}
-
-BLOG_TITLE = '${NICE_NAME}'
-BLOG_DESCRIPTION = 'News'
-BLOG_PAGINATE_BY = 10
 
 LOGGING = {
     'version': 1,
