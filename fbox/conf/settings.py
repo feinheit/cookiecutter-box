@@ -10,8 +10,8 @@ import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DEBUG = any(r in sys.argv for r in ('runserver', 'shell', 'dbshell'))
-TESTING = any(r in sys.argv for r in ('test',))
+DEBUG = env('DEBUG', False)
+TESTING = 'test' in sys.argv
 
 TEMPLATE_DEBUG = DEBUG
 
