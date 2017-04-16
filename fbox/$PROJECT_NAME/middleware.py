@@ -5,6 +5,8 @@ from django.core.exceptions import MiddlewareNotUsed
 from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import render_to_response
 
+from env import env
+
 
 class ForceDomainMiddleware(object):
     def __init__(self):
@@ -39,3 +41,19 @@ class OnlyStaffMiddleware(object):
             response = render_to_response('only_staff.html', {})
             response.status_code = 403
             return response
+
+    def process_request(self, request):
+        STAFF_IP = env('STAFF_IP', required=True)
+
+        # get clients ip
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+
+        # disallow access if neither /admin nor clients ip in whitelist
+        if request.path.startswith('/admin/') or ip in STAFF_IP:
+            pass
+        elif not request.user.is_staff:
+            response = render_to_response('only_staff.html', {})
