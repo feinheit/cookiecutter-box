@@ -1,0 +1,13 @@
+/* sticky admin bar ('Save and add another', 'Save and continue editing', 'Save') */
+#content-main #main_wrapper {
+  margin: 10px 0 50px 0;
+}
+
+#content-main .submit-row {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    left: 0;
+    box-sizing: border-box;
+    margin: 0;
+}
