@@ -1,5 +1,5 @@
 ================
-feincms-in-a-box
+Feincms-in-a-Boom-box
 ================
 
 .. image:: https://travis-ci.org/feinheit/feincms-in-a-box.svg?branch=master
