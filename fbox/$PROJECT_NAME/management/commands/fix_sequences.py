@@ -1,3 +1,4 @@
+#using django.core management import the NoArgsCommand and the connections
 from django.core.management.base import NoArgsCommand
 from django.db import connections
 
