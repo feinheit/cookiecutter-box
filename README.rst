@@ -1,6 +1,5 @@
-================
-feincms-in-a-box
-================
+Feincms-in-a-box
+
 
 .. image:: https://travis-ci.org/feinheit/feincms-in-a-box.svg?branch=master
     :target: https://travis-ci.org/feinheit/feincms-in-a-box
